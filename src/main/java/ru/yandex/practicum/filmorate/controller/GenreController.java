@@ -11,20 +11,22 @@ import ru.yandex.practicum.filmorate.service.GenreService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/genres")
+@Slf4j
 @RequiredArgsConstructor
 public class GenreController {
     private final GenreService genreService;
 
     @GetMapping
     public List<Genre> findAll() {
+        log.debug("Получен запрос GET на получение всех жанров");
         return genreService.findAll();
     }
 
     @GetMapping("/{id}")
     public Genre findById(@PathVariable int id) {
+        log.debug("Получен запрос GET на получение жанра по id {}", id);
         return genreService.findById(id);
     }
 }

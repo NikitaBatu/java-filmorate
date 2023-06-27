@@ -11,20 +11,22 @@ import ru.yandex.practicum.filmorate.service.RatingMpaService;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/mpa")
 @RequiredArgsConstructor
+@Slf4j
 public class RatingMpaController {
     private final RatingMpaService ratingMpaService;
 
     @GetMapping
     public List<Mpa> findAll() {
+        log.debug("Получен запрос GET на получение всех рейтингов");
         return ratingMpaService.findAll();
     }
 
     @GetMapping("/{id}")
     public Mpa findById(@PathVariable int id) {
+        log.debug("Получен запрос GET на получение рейтинга по id {}", id);
         return ratingMpaService.findById(id);
     }
 }

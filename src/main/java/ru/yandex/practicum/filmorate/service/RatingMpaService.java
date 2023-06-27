@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.ErrorRatingMpaException;
 import ru.yandex.practicum.filmorate.model.Mpa;
-import ru.yandex.practicum.filmorate.storage.dao.ratingMpa.RatingMpaDao;
+import ru.yandex.practicum.filmorate.storage.ratingMpa.RatingMpaStorage;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RatingMpaService {
-    private final RatingMpaDao ratingMpaDao;
+    private final RatingMpaStorage ratingMpaStorage;
 
     public Mpa findById(int ratingId) {
         contains(ratingId);
-        return ratingMpaDao.findById(ratingId);
+        return ratingMpaStorage.findById(ratingId);
     }
 
     public List<Mpa> findAll() {
-        return ratingMpaDao.findAll();
+        return ratingMpaStorage.findAll();
     }
 
     private void contains(int ratingId) {
         try {
-            ratingMpaDao.findById(ratingId);
+            ratingMpaStorage.findById(ratingId);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("Рейтинг MPA с id {} не найден", ratingId);
             throw new ErrorRatingMpaException("Рейтинг MPA не найден");

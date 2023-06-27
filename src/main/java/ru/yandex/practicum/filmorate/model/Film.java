@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @Validated
+@Builder
 public class Film {
     private long id;
     @NotBlank(message = "Название не должно быть пустым")
@@ -30,15 +30,8 @@ public class Film {
     private int duration;
     @NotNull(message = "Должен быть указан рейтинг MPA")
     private Mpa mpa;
-    private Set<Genre> genres = new HashSet<>();
+    private Set<Genre> genres;
+    private int rate;
+    private Set<Director> directors;
 
-    @Builder
-    public Film(long id, String name, String description, LocalDate releaseDate, int duration, Mpa mpa) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-        this.mpa = mpa;
-    }
 }

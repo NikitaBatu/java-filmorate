@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.ErrorGenreException;
 import ru.yandex.practicum.filmorate.model.Genre;
-import ru.yandex.practicum.filmorate.storage.dao.genre.GenreDao;
+import ru.yandex.practicum.filmorate.storage.genre.GenreStorage;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class GenreService {
-    private final GenreDao genreDao;
+    private final GenreStorage genreStorage;
 
     public Genre findById(int genreId) {
         contains(genreId);
-        return genreDao.findById(genreId);
+        return genreStorage.findById(genreId);
     }
 
     public List<Genre> findAll() {
-        return genreDao.findAll();
+        return genreStorage.findAll();
     }
 
     private void contains(int genreId) {
         try {
-            genreDao.findById(genreId);
+            genreStorage.findById(genreId);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("Жанр с id {} не найден", genreId);
             throw new ErrorGenreException("Жанр не найден");
