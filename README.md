@@ -13,37 +13,38 @@
 
 <details>
     <summary><h3>Описание схемы</h3></summary>
-- films
+* films
 Содержит данные о фильмах
-- genres
+* genres
 Содержит данные о существующих жанрах
-- film_genres 
+* film_genres 
 Содержит данные о жанре конкретного фильма
-- ratings_mpa
+* ratings_mpa
 Содержит данные о существующих рейтингах МРА
-- likes
+* likes
 Содержит данные о том, какой пользователь какой фильм лайкнул
-- users
+* users
 Содержит данные о пользователях
-- friends
+* friends
 Содержит данные о взаимности дружбы
-- reviews
+* reviews
 Содержит данные об отзывах
-- review_like
+* review_like
 Содержит данные о лайках, поставленных на отзыв
-- directors
+* directors
 Содержит данные о режиссерах
-- films_directors
+* films_directors
 Содержит данные о режиссерах конкретного фильма
-- events
+* events
 Содержит данные ленты событий
 
-### Примеры SQL запросов к БД:
+## Примеры SQL запросов к БД:
+
 </details>
 
 <details>
     <summary><h3>Топ 5 самых популярных фильмов</h3></summary>
-```
+```SQL
 SELECT
 films.name
 FROM films
@@ -57,7 +58,7 @@ WHERE film_id IN (SELECT film_id
 
 <details>
     <summary><h3>Все жанры конкретного фильма</h3></summary>
-```
+```SQL
 SELECT
 f.genre_id,
 g.name 
@@ -70,7 +71,7 @@ ORDER BY g.genre_id;
 
 <details>
     <summary><h3>Возвращает фильм по ид</h3></summary>
-```
+```SQL
 SELECT f.film_id,
        f.name,
        f.description,
